@@ -1,5 +1,3 @@
-# Jenkins Template for Rails applications
-
 ## What is it?
 This is a template to be used in Jenkins CI in order to build a Ruby On Rails project
 
@@ -21,7 +19,7 @@ After you've installed require gems in your project test the following rake task
 		rake cucumber
 		rake metrics:all
 		
-You should edit `Rakefile` to make some of them working by adding the following lines
+You should edit your `Rakefile` to make some of them working by adding the following lines
 
 		# used to generate ci reports, see ci\_reporter documentation
 		require 'ci/reporter/rake/rspec'
@@ -51,4 +49,4 @@ Then in order to configure Jenkins:
 
 ## Thanks to
 
-* Sebastian Bergmann for the idea http://jenkins-php.org/
+* Sebastian Bergmann for the idea [http://jenkins-php.org/](http://jenkins-php.org)
