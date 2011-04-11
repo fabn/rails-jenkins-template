@@ -8,28 +8,32 @@ This is a template to be used in Jenkins CI in order to build a Ruby On Rails pr
 
 ## Required Ruby gems
 * [ci\_reporter](https://github.com/nicksieger/ci_reporter)
-* [metrics\_fu](https://github.com/jscruggs/metric_fu)
+* [metrical](https://github.com/iain/metrical)
 
 ## Usage
 
-After you've installed require gems in your project test the following rake tasks are working
+After you've installed require gems in your project test the following commands are working in your environment
 
 		rake db:migrate db:test:prepare
 		rake ci:setup:rspec spec:rcov
-		rake cucumber
-		rake metrics:all
+		rake CUCUMBER_OPTS='--format html --out features/reports/features.html' cucumber
+		metrical
 		
 You should edit your `Rakefile` to make some of them working by adding the following lines
 
-		# used to generate ci reports, see ci\_reporter documentation
+		# used to generate ci reports, see ci_reporter documentation
 		require 'ci/reporter/rake/rspec'
-		# used to generate metrics, see metric\_fu documentation
-		require 'metric_fu'
+
+Finally you should add metrical configuration in `.metric` file in your project, this is the mine
+
+		# used to generate metrics, see metric_fu documentation
 		MetricFu::Configuration.run do |config|
-		  config.metrics = [:churn, :flog, :flay, :reek, :roodi, :hotspots]
+		  config.metrics = [:churn, :flog, :flay, :reek, :roodi, :hotspots, :rails_best_practices]
 		  config.metrics << :saikuro unless RUBY_VERSION == '1.9.2'
 		  config.graphs = [:flog, :flay, :reek, :roodi, :rails_best_practices]
 		end
+
+I excluded rcov from `metric_fu` because coverage task is included in Ruby Metrics Plugin.
 
 Then in order to configure Jenkins:
 
