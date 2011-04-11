@@ -38,6 +38,7 @@ Then in order to configure Jenkins:
 2. Install this template in Jenkins by
 		cd $JENKINS_HOME/jobs
 		git clone git://github.com/fabn/rails-jenkins-template.git rails-template
+3. Restart Jenkins to load the new job template
 3. Click on "New Job"
 4. Enter a "Job Name"
 5. Select "Copy existing job" and enter "rails-template" into the "Copy from" field.
