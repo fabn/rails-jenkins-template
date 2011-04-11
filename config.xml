@@ -13,7 +13,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>rvm use default; bundle install</command>
+      <command>rvm use default; bundle install; mkdir -p features/report</command>
     </hudson.tasks.Shell>
     <hudson.plugins.rake.Rake>
       <rakeInstallation>(Default)</rakeInstallation>
@@ -36,7 +36,7 @@
       <rakeFile></rakeFile>
       <rakeLibDir></rakeLibDir>
       <rakeWorkingDir></rakeWorkingDir>
-      <tasks>cucumber</tasks>
+      <tasks>CUCUMBER_OPTS=&apos;--format html --out features/report/features.html&apos; cucumber</tasks>
       <silent>false</silent>
     </hudson.plugins.rake.Rake>
     <hudson.plugins.rake.Rake>
@@ -60,6 +60,13 @@
           <reportName>Metrics Fu</reportName>
           <reportDir>tmp/metric_fu/output</reportDir>
           <reportFiles>index.html</reportFiles>
+          <keepAll>true</keepAll>
+          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Cucumber Features</reportName>
+          <reportDir>features/report</reportDir>
+          <reportFiles>features.html</reportFiles>
           <keepAll>true</keepAll>
           <wrapperName>htmlpublisher-wrapper.html</wrapperName>
         </htmlpublisher.HtmlPublisherTarget>
