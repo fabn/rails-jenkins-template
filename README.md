@@ -41,9 +41,7 @@ Then in order to configure Jenkins:
 2. Make [rvm](https://rvm.beginrescueend.com/) available to the Jenkins user
 3. Install at least one Ruby for the jenkins user and set it to default with `rvm use <ruby> --default`, where `<ruby>` is the version you've installed.
 3. Install `metrical` gem for the jenkins user (`rvm use default && gem install metrical`)
-2. Install this template in Jenkins by
-		cd $JENKINS_HOME/jobs
-		git clone git://github.com/fabn/rails-jenkins-template.git rails-template		
+2. Install this template in Jenkins by `cd $JENKINS_HOME/jobs && git clone git://github.com/fabn/rails-jenkins-template.git rails-template`
 3. Restart Jenkins to load the new job template
 3. Click on "New Job"
 4. Enter a "Job Name"
