@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>bundle install</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.rake.Rake>
+      <rakeInstallation>(Default)</rakeInstallation>
+      <rakeFile></rakeFile>
+      <rakeLibDir></rakeLibDir>
+      <rakeWorkingDir></rakeWorkingDir>
+      <tasks>db:migrate db:test:prepare</tasks>
+      <silent>false</silent>
+    </hudson.plugins.rake.Rake>
+    <hudson.plugins.rake.Rake>
+      <rakeInstallation>(Default)</rakeInstallation>
+      <rakeFile></rakeFile>
+      <rakeLibDir></rakeLibDir>
+      <rakeWorkingDir></rakeWorkingDir>
+      <tasks>ci:setup:rspec spec:rcov</tasks>
+      <silent>false</silent>
+    </hudson.plugins.rake.Rake>
+    <hudson.plugins.rake.Rake>
+      <rakeInstallation>(Default)</rakeInstallation>
+      <rakeFile></rakeFile>
+      <rakeLibDir></rakeLibDir>
+      <rakeWorkingDir></rakeWorkingDir>
+      <tasks>cucumber</tasks>
+      <silent>false</silent>
+    </hudson.plugins.rake.Rake>
+  </builders>
+  <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>spec/reports/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.plugins.rubyMetrics.rcov.RcovPublisher>
+      <reportDir>coverage</reportDir>
+      <targets>
+        <hudson.plugins.rubyMetrics.rcov.model.MetricTarget>
+          <metric>TOTAL_COVERAGE</metric>
+          <healthy>80</healthy>
+          <unhealthy>0</unhealthy>
+          <unstable>0</unstable>
+        </hudson.plugins.rubyMetrics.rcov.model.MetricTarget>
+        <hudson.plugins.rubyMetrics.rcov.model.MetricTarget>
+          <metric>CODE_COVERAGE</metric>
+          <healthy>80</healthy>
+          <unhealthy>0</unhealthy>
+          <unstable>0</unstable>
+        </hudson.plugins.rubyMetrics.rcov.model.MetricTarget>
+      </targets>
+    </hudson.plugins.rubyMetrics.rcov.RcovPublisher>
+    <hudson.plugins.rubyMetrics.railsStats.RailsStatsPublisher>
+      <rake>
+        <rakeInstallation>(Default)</rakeInstallation>
+        <rakeWorkingDir></rakeWorkingDir>
+        <tasks>stats</tasks>
+        <silent>true</silent>
+      </rake>
+      <rakeInstallation>(Default)</rakeInstallation>
+      <rakeWorkingDir></rakeWorkingDir>
+      <task>stats</task>
+    </hudson.plugins.rubyMetrics.railsStats.RailsStatsPublisher>
+    <hudson.plugins.rubyMetrics.railsNotes.RailsNotesPublisher>
+      <rake>
+        <rakeInstallation>(Default)</rakeInstallation>
+        <rakeWorkingDir></rakeWorkingDir>
+        <tasks>notes</tasks>
+        <silent>true</silent>
+      </rake>
+      <rakeInstallation>(Default)</rakeInstallation>
+      <rakeWorkingDir></rakeWorkingDir>
+      <task>notes</task>
+    </hudson.plugins.rubyMetrics.railsNotes.RailsNotesPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>
