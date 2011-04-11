@@ -13,7 +13,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>bundle install</command>
+      <command>rvm use default; bundle install</command>
     </hudson.tasks.Shell>
     <hudson.plugins.rake.Rake>
       <rakeInstallation>(Default)</rakeInstallation>
