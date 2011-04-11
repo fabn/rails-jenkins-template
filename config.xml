@@ -39,6 +39,14 @@
       <tasks>cucumber</tasks>
       <silent>false</silent>
     </hudson.plugins.rake.Rake>
+    <hudson.plugins.rake.Rake>
+      <rakeInstallation>(Default)</rakeInstallation>
+      <rakeFile></rakeFile>
+      <rakeLibDir></rakeLibDir>
+      <rakeWorkingDir></rakeWorkingDir>
+      <tasks>metrics:all</tasks>
+      <silent>false</silent>
+    </hudson.plugins.rake.Rake>
   </builders>
   <publishers>
     <hudson.tasks.junit.JUnitResultArchiver>
@@ -46,6 +54,17 @@
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
+    <htmlpublisher.HtmlPublisher>
+      <reportTargets>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Metrics Fu</reportName>
+          <reportDir>tmp/metric_fu/output</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <keepAll>true</keepAll>
+          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+        </htmlpublisher.HtmlPublisherTarget>
+      </reportTargets>
+    </htmlpublisher.HtmlPublisher>
     <hudson.plugins.rubyMetrics.rcov.RcovPublisher>
       <reportDir>coverage</reportDir>
       <targets>
