@@ -33,7 +33,7 @@ Finally you should add metrical configuration in `.metric` file in your project,
 		  config.graphs = [:flog, :flay, :reek, :roodi, :rails_best_practices]
 		end
 
-I excluded rcov from `metric_fu` because coverage task is included in Ruby Metrics Plugin.
+I excluded rcov from `metric_fu` configuration because coverage task is included in Ruby Metrics Plugin.
 
 Then in order to configure Jenkins:
 
@@ -43,7 +43,7 @@ Then in order to configure Jenkins:
 3. Install `metrical` gem for the jenkins user (`rvm use default && gem install metrical`)
 2. Install this template in Jenkins by
 		cd $JENKINS_HOME/jobs
-		git clone git://github.com/fabn/rails-jenkins-template.git rails-template
+		git clone git://github.com/fabn/rails-jenkins-template.git rails-template		
 3. Restart Jenkins to load the new job template
 3. Click on "New Job"
 4. Enter a "Job Name"
