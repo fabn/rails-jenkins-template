@@ -13,7 +13,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>rvm use default; bundle install; mkdir -p features/reports</command>
+      <command>if [ -f $WORKSPACE/.rvmrc ]; then source $WORKSPACE/.rvmrc; else rvm use default; fi; bundle install; mkdir -p features/reports</command>
     </hudson.tasks.Shell>
     <hudson.plugins.rake.Rake>
       <rakeInstallation>(Default)</rakeInstallation>
